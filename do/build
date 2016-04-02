@@ -4,6 +4,12 @@ set -o pipefail
 DOCKER_IMAGE=mkdo-build
 
 if [[ $DOCKER_IMAGE != ${DOCKER_CONTAINER-} ]]; then
+    if [[ $(uname -s) = Darwin ]]; then
+        if [[ $(docker-machine status) = Stopped ]]; then
+            docker-machine start
+        fi
+        eval $(docker-machine env)
+    fi
     docker build \
            --force-rm --rm=true \
            -t "$DOCKER_IMAGE" \
