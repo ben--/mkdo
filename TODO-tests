@@ -1,0 +1,11 @@
+create-user
+
+    Creates group
+    group with conflicting gid
+    group with conflicting name
+    Creates user
+    user with conflicting uid
+    user with conflicting name
+
+    Add extra group?
+    local group conflict with remote group?
