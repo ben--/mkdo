@@ -1,0 +1,32 @@
+#!/bin/bash -eu
+set -o pipefail
+
+DOCKER_IMAGE=mkdo-build
+
+if [[ $DOCKER_IMAGE != ${DOCKER_CONTAINER-} ]]; then
+    docker build \
+           --force-rm --rm=true \
+           -t "$DOCKER_IMAGE" \
+           do/build-docker
+
+    source_dir=$(pwd)
+    build_dir=$(pwd)/build
+
+    docker run \
+           --env DOCKER_CONTAINER=$DOCKER_IMAGE \
+           --read-only \
+           --rm \
+           --sig-proxy=true \
+           --user $(id -u):$(id -g) \
+           --volume=$(pwd):$(pwd):ro \
+           --volume=$(pwd):$(pwd):ro \
+           --workdir=$(pwd) \
+           $DOCKER_IMAGE \
+           do/build
+    exit $?
+
+fi
+
+id
+pwd
+ls -l
