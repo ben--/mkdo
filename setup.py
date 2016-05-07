@@ -5,7 +5,7 @@ setup(
     version='0.1.0',
 
     description='Make Do - Manage Docker wrappers for build scripts',
-    long_description=long_description,
+    long_description='Make Do - Manage Docker wrappers for build scripts',
 
     url='https://github.com/ben--/mkdo',
     author='Ben Rogers',
@@ -33,9 +33,9 @@ setup(
 
     packages=['mkdo'],
 
-    data_files = {
-        'scripts': 'scripts/setup.sh',
-    },
+    data_files = [
+        ('scripts', ['scripts/setup.sh']),
+    ],
 
     entry_points = {
         'console_scripts': [
