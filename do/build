@@ -44,7 +44,6 @@ if [[ $DOCKER_IMAGE != ${DOCKER_CONTAINER-} ]]; then
     exit $?
 fi
 
-ls -al /tmp
 pip install -r requirements.txt
 
 cd build

@@ -1,4 +1,7 @@
+import os
 from setuptools import setup
+
+source_dir = os.path.dirname(os.path.realpath(__file__))
 
 setup(
     name='mkdo',
@@ -31,10 +34,11 @@ setup(
 
     keywords='docker build',
 
+    package_dir={'mkdo': os.path.join(source_dir, 'mkdo')},
     packages=['mkdo'],
 
     data_files = [
-        ('scripts', ['scripts/setup.sh']),
+        ('scripts', [os.path.join(source_dir, 'scripts/setup.sh')]),
     ],
 
     entry_points = {
