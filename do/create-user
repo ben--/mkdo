@@ -27,7 +27,8 @@ RUN useradd $user -u $uid -g $gid
 USER $user
 EOF
 
-docker build \
+echo -n "User Docker: "
+docker build -q \
        --force-rm --rm=true \
        -t "$user_docker" \
        "$user_docker_dir"
