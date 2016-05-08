@@ -10,4 +10,5 @@ RUN apt-get update && \
 
 RUN pip install \
     flake8 \
+    pylint \
     wheel

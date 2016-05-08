@@ -1,8 +1,14 @@
+# do/analyze
+.pylint.d/
+pylint_global.txt
+pylint_mkdo.txt
+
+# do/build
+build
+dist
+mkdo.egg-info
+
 # emacs
 *~
 .#*
 \#*#
-
-build
-dist
-mkdo.egg-info
