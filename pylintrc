@@ -1,0 +1,7 @@
+[REPORTS]
+files-output=yes
+
+[FORMAT]
+max-line-length=96
+indent-string='    '
+expected-line-ending-format=LF

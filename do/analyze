@@ -47,5 +47,5 @@ fi
 flake8 --max-complexity 5 mkdo
 
 export PYLINTHOME="$source_dir/.pylint.d"
-rm pylint_*.txt
-pylint --files-output=y mkdo
+rm -f pylint_*.txt
+pylint --rcfile=pylintrc mkdo
