@@ -8,4 +8,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get clean
 
-RUN pip install wheel
+RUN pip install \
+    flake8 \
+    wheel
