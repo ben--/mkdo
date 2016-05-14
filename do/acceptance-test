@@ -40,9 +40,9 @@ if [[ $DOCKER_IMAGE != ${DOCKER_CONTAINER-} ]]; then
            --volume="$source_dir:$source_dir:rw" \
            --workdir="$source_dir" \
            $DOCKER_IMAGE-user \
-           "$source_dir/do/test"
+           "$source_dir/do/acceptance-test"
 #           --volume="$output_dir:$output_dir:rw" \
     exit $?
 fi
 
-nosetests
+behave
