@@ -1,6 +1,6 @@
 from behave import given
 
-@given(u'a prompt in a source directory')
+@given(u'an empty source directory')
 def step_impl(context):
     raise NotImplementedError(u'STEP: Given a prompt in a source directory')
 
