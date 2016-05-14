@@ -32,7 +32,7 @@ if [[ $DOCKER_IMAGE != ${DOCKER_CONTAINER-} ]]; then
     fi
     mkdir "$output_dir"
 
-    docker run \
+    docker run -t \
            --env DOCKER_CONTAINER=$DOCKER_IMAGE \
            --env "source_dir=$source_dir" \
            --rm \
@@ -45,4 +45,8 @@ if [[ $DOCKER_IMAGE != ${DOCKER_CONTAINER-} ]]; then
     exit $?
 fi
 
-nosetests
+nosetests \
+    --with-coverage \
+    --cover-branches \
+    --cover-inclusive \
+    --with-xunit

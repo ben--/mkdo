@@ -10,6 +10,7 @@ RUN apt-get update && \
 
 RUN pip install \
     behave \
+    coverage \
     flake8 \
     nose \
     pylint \

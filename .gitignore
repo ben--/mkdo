@@ -10,6 +10,10 @@ build
 dist
 mkdo.egg-info
 
+# do/unit-test
+.coverage
+nosetests.xml
+
 # emacs
 *~
 .#*
