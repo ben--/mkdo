@@ -3,3 +3,4 @@ set -o pipefail
 
 do/analyze
 do/build
+do/unit-test
