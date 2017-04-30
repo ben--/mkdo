@@ -1,5 +1,8 @@
 *.pyc
 
+# do/acceptance-test
+acceptance-test
+
 # do/analyze
 .pylint.d/
 pylint_global.txt
