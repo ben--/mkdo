@@ -29,8 +29,10 @@ ADD mkdo-0.1.0-py2.py3-none-any.whl /tmp
 RUN pip install /tmp/mkdo-0.1.0-py2.py3-none-any.whl
 """)
 
-    #assert 0 == sp.call(['docker', 'build', '-t', docker_name, docker_dir], stdout=sp.PIPE)
-    return_code = sp.call(['docker', 'build', '-t', docker_name, docker_dir], stdout=sp.PIPE)
+    return_code = sp.call(['docker', 'build',
+                           '--force-rm', '--rm=true',
+                           '-t', docker_name, docker_dir
+                           ], stdout=sp.PIPE)
     return_code.should.be.equal(0)
     context.docker_name = docker_name
 
