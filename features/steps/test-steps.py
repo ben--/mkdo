@@ -17,19 +17,21 @@ def step_impl(context):
         f.write("""
 FROM debian:8.5
 
-#RUN apt-get update \
-# && apt-get install -y --no-install-recommends \
-#        ca-certificates \
-#        curl \
-# && rm -rf /var/lib/apt/lists/* \
-# && apt-get clean
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python \
+        python-pip \
+    && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
-ADD mkdo-0.1.0-py2.py3-none-any.whl /tmp/foo
+ADD mkdo-0.1.0-py2.py3-none-any.whl /tmp
+RUN pip install /tmp/mkdo-0.1.0-py2.py3-none-any.whl
 """)
 
     #assert 0 == sp.call(['docker', 'build', '-t', docker_name, docker_dir], stdout=sp.PIPE)
     return_code = sp.call(['docker', 'build', '-t', docker_name, docker_dir], stdout=sp.PIPE)
-    return_code.should.be(0)
+    return_code.should.be.equal(0)
     context.docker_name = docker_name
 
 @given(u'an empty source directory')
@@ -50,4 +52,8 @@ def step_impl(context, command):
 
 @then(u'a "do/build" script is created')
 def step_impl(context):
-    os.path.exists(os.path.join(context.fake_srcdir, 'do')).should.be.true
+    do_build = os.path.join(context.fake_srcdir, 'do', 'build')
+    with sure.ensure('do/build should exist'):
+        os.path.exists(do_build).should.be.true
+    with sure.ensure('do/build should be executable'):
+        os.access(do_build, os.X_OK).should.be.true
