@@ -15,7 +15,7 @@ def step_impl(context):
     shutil.copy('../dist/mkdo-0.1.0-py2.py3-none-any.whl', os.path.join(docker_dir))
     with open(os.path.join(docker_dir, 'Dockerfile'), 'w') as f:
         f.write("""
-FROM debian:8.5
+FROM debian:8.7
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
