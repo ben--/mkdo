@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 set -o pipefail
 
 DOCKER_IMAGE=mkdo-build
@@ -48,4 +48,8 @@ flake8 --max-complexity 5 mkdo
 
 export PYLINTHOME="$source_dir/.pylint.d"
 rm -f pylint_*.txt
-pylint --rcfile=pylintrc mkdo
+if ! pylint --rcfile=pylintrc mkdo; then
+    echo >&2 "pylint failed"
+    cat pylint_mkdo.txt >&2
+    exit 1
+fi
